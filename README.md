@@ -1,2 +1,2 @@
 # RPi-GeckoDriveController
-Python GUI for driving Gecko servo controllers
+Python GUI for controlling Gecko stepper drives off of a raspberry-pi.
