@@ -1,3 +1,6 @@
+# Note - script will only run on Raspberry-Pi 
+# or an OS capable of installing the RPi.GPIO package.
+
 import RPi.GPIO as GPIO
 import time
 import sys
@@ -8,11 +11,11 @@ from guimech import Ui_main
 GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 
-## Setting pin modes
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
-GPIO.setup(6, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
+# Setting pin modes
+# GPIO.setup(17, GPIO.OUT)
+# GPIO.setup(22, GPIO.OUT)
+# GPIO.setup(6, GPIO.OUT)
+# GPIO.setup(13, GPIO.OUT)
 
 class _vars:
     zSpeed = 0.997
@@ -20,7 +23,8 @@ class _vars:
     zTravel = 0
     
 class guiProg(Ui_main):
-    
+
+    # PyQt form items
     def __init__(self, dialog):
         Ui_main.__init__(self)
         self.setupUi(dialog)
@@ -31,19 +35,22 @@ class guiProg(Ui_main):
         self.setZhome.pressed.connect(self.setHome)
         self.setZdist.pressed.connect(self.setTravel)
         self.pushButton_22.pressed.connect(self.clearAll)
-        
+
+    # sending a forward-rotation pulse using pins 13 and 6    
     def pulseF(self):
         GPIO.output(13, GPIO.HIGH)
         GPIO.output(6, GPIO.LOW)
         GPIO.output(6, GPIO.HIGH)
         _vars.zPos = _vars.zPos + 1
-        
+
+    # sending a reverse-rotation pulse using pins 13 and 6    
     def pulseR(self):
         GPIO.output(13, GPIO.LOW)
         GPIO.output(6, GPIO.LOW)
         GPIO.output(6, GPIO.HIGH)
         _vars.zPos = _vars.zPos - 1
-        
+
+    # setting home position.    
     def setHome(self):
         _vars.zPos = 0
         self.homeInsertLED.setEnabled(True)
