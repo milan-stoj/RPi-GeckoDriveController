@@ -12,10 +12,10 @@ GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 
 # Setting pin modes
-# GPIO.setup(17, GPIO.OUT)
-# GPIO.setup(22, GPIO.OUT)
-# GPIO.setup(6, GPIO.OUT)
-# GPIO.setup(13, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(6, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
 
 class _vars:
     zSpeed = 0.997
